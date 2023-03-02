@@ -13,6 +13,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -21,26 +24,34 @@ import edu.wpi.first.wpilibj.Joystick;
  */
 public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
+  private DifferentialDrive m_myRobot;
+  private 
+  private static final int leftDeviceID = 1; 
+  private static final int rightDeviceID = 2;
+  private CANSparkMax m_leftMotor;
+  private CANSparkMax m_rightMotor;
+
 
   private RobotContainer m_robotContainer;
   
-  //private CANSparkMax _leftMotor1 = new CANSparkMax(3, MotorType.kBrushless);
-  //private CANSparkMax _leftMotor2 = new CANSparkMax(4, MotorType.kBrushless);
-  //private CANSparkMax _rightMotor1 = new CANSparkMax(1, MotorType.kBrushless);
-  //private CANSparkMax _rightMotor2 = new CANSparkMax(2, MotorType.kBrushless);
-  Compressor com = new Compressor(40);
-	DoubleSolenoid sol = new Double Solenoid(1, 2);
 
-  Joystick joy = new Joystick(1);
   
 
   @Override
   public void robotInit() {
-    //set up compressors
-		com.setClosedLoopControl(true);
-		com.start();
-    m_robotContainer = new RobotContainer();
+  //private CANSparkMax _leftMotor1 = new CANSparkMax(3, MotorType.kBrushless);
+  //private CANSparkMax _leftMotor2 = new CANSparkMax(4, MotorType.kBrushless);
+  //private CANSparkMax _rightMotor1 = new CANSparkMax(1, MotorType.kBrushless);
+  //private CANSparkMax _rightMotor2 = new CANSparkMax(2, MotorType.kBrushless);
+  m_leftMotor = new CANSparkMax(leftDeviceID, MotorType.kBrushless);
+  m_rightMotor = new CANSparkMax(rightDeviceID, MotorType.kBrushless);
+  Compressor com = new Compressor(40);
+	DoubleSolenoid sol = new Double Solenoid(1, 2);
+
+  m_robotContainer = new RobotContainer();
   
+    
+    
   }
 
   /**
@@ -95,7 +106,7 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {}
-
+  drivetrain.Drive(xbox.getLeftY(), xbox.getLeftX());
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
