@@ -4,14 +4,19 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 
 public class Claw extends SubsystemBase {
-  /** Creates a new Claw. */
-  DoubleSolenoid clawSolenoid = null;
+  
+/** Creates a new Claw. */
+  DoubleSolenoid clawSolenoid = new DoubleSolenoid (PneumaticsModuleType.CTREPCM, 1, 2);
+  
   public Claw() {}
+
+  
   public void Clawout(){
     clawSolenoid.set(Value.kForward);
  }

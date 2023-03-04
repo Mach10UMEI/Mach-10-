@@ -17,7 +17,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorController;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 
-public class DriveSubsystem extends SubsystemBase {
+public class DriveTrain extends SubsystemBase {
   /**
    * Class variables for storing data and objects that this subsystem needs to
    * operate.

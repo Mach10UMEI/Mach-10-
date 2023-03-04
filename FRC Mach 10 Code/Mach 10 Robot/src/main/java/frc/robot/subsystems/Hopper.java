@@ -10,8 +10,9 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Hopper extends SubsystemBase {
   /** Creates a new Hopper. */
-  DoubleSolenoid hopperSolenoid = null;
+  DoubleSolenoid hopperSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, id1, id2);
   public Hopper() {}
+  
   public void Hopperout(){
     hopperSolenoid.set(Value.kForward);
  }

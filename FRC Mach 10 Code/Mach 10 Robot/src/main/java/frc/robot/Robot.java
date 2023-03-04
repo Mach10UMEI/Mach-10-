@@ -5,8 +5,12 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
+import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.DriveTrain;
+
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -23,34 +27,26 @@ import edu.wpi.first.wpilibj.SPI;
  * project.
  */
 public class Robot extends TimedRobot {
+  
   private Command m_autonomousCommand;
   private DifferentialDrive m_myRobot;
-  private 
-  private static final int leftDeviceID = 1; 
-  private static final int rightDeviceID = 2;
-  private CANSparkMax m_leftMotor;
-  private CANSparkMax m_rightMotor;
-
-
-  private RobotContainer m_robotContainer;
-  
-
-  
+  private CANSparkMax PassagerBack
+  private CANSparkMax PassagerFront
+  private CANSparkMax DriverFront
+  private CANSparkMax DriverBack
 
   @Override
   public void robotInit() {
-  //private CANSparkMax _leftMotor1 = new CANSparkMax(3, MotorType.kBrushless);
-  //private CANSparkMax _leftMotor2 = new CANSparkMax(4, MotorType.kBrushless);
-  //private CANSparkMax _rightMotor1 = new CANSparkMax(1, MotorType.kBrushless);
-  //private CANSparkMax _rightMotor2 = new CANSparkMax(2, MotorType.kBrushless);
-  m_leftMotor = new CANSparkMax(leftDeviceID, MotorType.kBrushless);
-  m_rightMotor = new CANSparkMax(rightDeviceID, MotorType.kBrushless);
-  Compressor com = new Compressor(40);
-	DoubleSolenoid sol = new Double Solenoid(1, 2);
+  private CANSparkMax PassagerFront = new CANSparkMax(3, MotorType.kBrushless);
+  private CANSparkMax PassagerBack = new CANSparkMax(4, MotorType.kBrushless);
+  private CANSparkMax DriverFront = new CANSparkMax(1, MotorType.kBrushless);
+  private CANSparkMax DriverBack = new CANSparkMax(2, MotorType.kBrushless);
+  private XboxController DriverXbox = new XboxController(0);
+  private XboxController OperatorXbox = new XboxController(1);
 
-  m_robotContainer = new RobotContainer();
+
   
-    
+  
     
   }
 
@@ -80,7 +76,7 @@ public class Robot extends TimedRobot {
   /** This autonomous runs the autonomous command selected by your {@link RobotContainer} class. */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -106,7 +102,10 @@ public class Robot extends TimedRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {}
-  drivetrain.Drive(xbox.getLeftY(), xbox.getLeftX());
+  Claw.ClawIn(getbutten1)
+  Claw.Clawout(getbutten2)
+  DriveTrain.Drive(DriverXbox.getLeftY(), DriverXbox.getLeftX());
+
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.

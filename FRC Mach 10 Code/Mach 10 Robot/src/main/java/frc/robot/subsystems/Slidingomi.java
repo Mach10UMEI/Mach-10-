@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 public class Slidingomi extends SubsystemBase {
   /** Creates a new Claw. */
-  DoubleSolenoid omiSolenoid = null;
+  DoubleSolenoid omiSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, id1, id2);
   public Slidingomi() {}
   
   public void Oniout(){
